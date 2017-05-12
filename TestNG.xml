@@ -1,0 +1,23 @@
+
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AssignmentSuite">
+    <test name="Login">
+        <parameter name="usrName" value="sam_po"/>
+        <parameter name="usrPwd" value="letmein"/>
+       <!-- <parameter name="usrEmail" value="sam_po@getnada.com"/> -->
+
+<!--
+        <classes>
+            <class name="com.testbidqa.TestRunner">
+                <methods>
+                    <include name="Login" />
+                    <exclude name="PORegister"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+</suite>
+-->
