@@ -1,8 +1,10 @@
 package com.testbidqa;
 
+import com.testbidqa.PageResources.DataClass;
 import com.testbidqa.PageResources.PageResources;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -15,7 +17,8 @@ import java.util.concurrent.TimeUnit;
 public class LoginTest {
 
     WebDriver driver;
-    public PageResources pageResources;
+    private PageResources pageResources;
+    private DataClass data;
 
     @BeforeTest
     public void setup() throws InterruptedException {
@@ -31,16 +34,23 @@ public class LoginTest {
     }
 
 
-    //Test case to login with registered account
+    //Test case to login with registered PO account
     //------------------------------------------------------------------------------------------------------------
-    @Parameters({"usrName", "usrPwd"})
+    //@Parameters({"usrName", "usrPwd"}) String usrName, String usrPwd
     @Test(priority = 1, enabled = false)
-    public void login(String usrName, String usrPwd) throws InterruptedException {
+    public void login() throws InterruptedException {
         pageResources = new PageResources(driver);
+        data = new DataClass();
+
         Thread.sleep(8000);
-        pageResources.getLogin().setUsrName(usrName);
-        pageResources.getLogin().setUsrPwd(usrPwd);
+        pageResources.getHomePage().clickLogin();
+        pageResources.getLogin().setUsrName(data.poUsrName);
+        pageResources.getLogin().setUsrPwd(data.poPwd);
         pageResources.getLogin().clickSignIn();
+        Thread.sleep(5000);
+        Assert.assertEquals(pageResources.getPoHomePage().getUserType(), "You are logged in as a Project Owner");
+        System.out.println("User successfully logged in as Project Owner");
+        Thread.sleep(5000);
         pageResources.getLogin().clickLogout();
     }
     //------------------------------------------------------------------------------------------------------------

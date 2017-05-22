@@ -36,11 +36,6 @@ public class PageResources {
         return qaMyAccount;
     }
 
-    /*DataProviderClass dataProviderClass;
-    public DataProviderClass getDataProviderClass() {
-        return dataProviderClass;
-    }*/
-
     POTeamManager poTeamManager;
     public POTeamManager getPoTeamManager() {
         return poTeamManager;
@@ -66,6 +61,12 @@ public class PageResources {
         return registerPage;
     }
 
+    POHomePage poHomePage;
+    public POHomePage getPoHomePage() {
+        return poHomePage;
+    }
+
+
     public PageResources(WebDriver driver){
         homePage = new HomePage(driver);
         registerPage = new RegisterPage(driver);
@@ -77,6 +78,7 @@ public class PageResources {
         qaProjectsInProgress = new QAProjectsInProgress(driver);
         poOutstandingPayments = new POOutstandingPayments(driver);
         poAwaitingCompletion = new POAwaitingCompletion(driver);
+        poHomePage = new POHomePage(driver);
     }
 
 }

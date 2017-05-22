@@ -49,10 +49,10 @@ public class QAProjectsInProgress {
         btnMarkDelivered.click();
     }
 
-    @FindBy(name = "yes")
+    @FindBy(xpath = "//input[@value ='Yes, Mark Delivered!']")
     WebElement btnYesMarkDelivered;
     public void clkBtnYesMarkDelivered(){
-        btnMarkDelivered.click();
+        btnYesMarkDelivered.click();
     }
 
 

@@ -33,7 +33,7 @@ public class POPostNewProject {
     @FindBy(id="ending")
     WebElement prjEndingOn;
 
-    @FindBy(xpath = "//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[3]/td[5]/a")
+    @FindBy(xpath = "//*[@id=\"ui-datepicker-div\"]/table/tbody/tr[4]/td[2]/a")
     WebElement prjEndingDate;
 
     @FindBy(xpath = "(//button[@type='button'])[5]")
@@ -86,6 +86,14 @@ public class POPostNewProject {
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(xpath="//div[@class='mm_inn']")
+    WebElement pageTitle;
+    //Method to get the page title
+    public String getPageTitle(){
+        return pageTitle.getText();
+    }
+
+
     //This method is used to type in the Project Title
     public void setPrjTitle(String title){
         prjTitle.sendKeys(title);
@@ -118,21 +126,10 @@ public class POPostNewProject {
     }
 
     //This method clicks on a date in the calendar pop-up
-    public void setPrjEndingDate(){
+    public void setPrjEndingDate() {
         prjEndingDate.click();
-       /* List<WebElement> allDates=driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//td"));
-
-        for(WebElement ele:allDates)
-        {
-            String date=ele.getText();
-
-            if(date.equalsIgnoreCase("28"))
-            {
-                ele.click();
-                break;
-            }
-        }*/
     }
+
 
     //This method clicks on the Done button
     public void setButtonDone(){
@@ -173,6 +170,12 @@ public class POPostNewProject {
     //This method clicks on Pay By PayPal button
     public void clickPayByPayPal(){
         payByPayPalButton.click();
+    }
+
+    @FindBy(xpath="//h1[@class='alpha ng-binding']")
+    WebElement payPalHeader;
+    public String getPayPalHeader(){
+        return payPalHeader.getText();
     }
 
     //This method types in the PayPal account email

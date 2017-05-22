@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 /**
  * Created by soumya on 5/1/17.
  */
@@ -19,9 +21,13 @@ public class POTeamManager {
 
     @FindBy(id="projects-filter")
     WebElement prjFilters;
-    public void setPrjFilters(int index){
-        Select country = new Select(prjFilters);
-        country.selectByIndex(index);
+    public void setPrjFilters(String prj){
+        prjFilters.click();
+        prjFilters.sendKeys(prj);
+        prjFilters.click();
+        //Select select = new Select(prjFilters);
+        //select.selectByVisibleText(prj);
+
     }
 
     @FindBy(id="create-new-team")
@@ -32,9 +38,9 @@ public class POTeamManager {
 
     @FindBy(id="select-project")
     WebElement selectProject;
-    public void selectProject(int index){
+    public void selectProject(String prj){
         Select project = new Select(selectProject);
-        project.selectByIndex(index);
+        project.selectByVisibleText(prj);
     }
 
     @FindBy(id="team-title")
@@ -55,10 +61,10 @@ public class POTeamManager {
         btnCreate.click();
     }
 
-    @FindBy(xpath = "//*[starts-with(@id,'team-')]") //".//*[@id='team-109']/div[1]/div[3]/a[contains(text(), 'team-')]")
+    @FindBy(xpath = "//a[@class='show-add-user glyphicon glyphicon-user btn btn-default btn-xs']")
     WebElement addUsers;
     public void clkAddUsers(){
-        System.out.println("Inside clkAddUsers method");
+        //System.out.println("Inside clkAddUsers method");
         addUsers.click();
     }
 
@@ -76,11 +82,36 @@ public class POTeamManager {
         users.selectByIndex(index);
     }
 
+    public int getTotalUsers(){
+        Select users = new Select(selectAddUsers);
+        int listSize = users.getOptions().size();
+        return listSize;
+    }
+
     @FindBy(id="submit-add-user")
     WebElement submitAddUser;
     public void clkAdd(){
         submitAddUser.click();
     }
 
+    @FindBy(xpath = "//a[contains(@href,'http://test.bidqa.com/wp-login.php?action=logout')]")
+    WebElement logout;
+    public void clkLogout(){
+        logout.click();
+    }
+
+    @FindBy(xpath = "//input[@class='select-all']")
+    WebElement allUsers;
+    public void chkAllUsers(){
+        allUsers.click();
+    }
+
+    @FindBy(xpath = "//button[@id='action']")
+    WebElement actions;
+    public void clkActions(String txt){
+        actions.click();
+        Select select = new Select(actions);
+        select.selectByVisibleText(txt);
+    }
 
 }

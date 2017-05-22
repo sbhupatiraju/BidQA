@@ -17,7 +17,7 @@ public class POOutstandingPayments {
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(linkText = "Make Escrow")
+    @FindBy(xpath = "//input[@name='escrowme']")
     WebElement btnMakeEscrow;
     public void clkMakeEscrow(){
         btnMakeEscrow.click();
@@ -29,21 +29,21 @@ public class POOutstandingPayments {
         escrowAmount.sendKeys(String.valueOf(amt));
     }
 
-    @FindBy(id="my_proj_sel")
-    WebElement escrowProject;
-    public void selectEscrowProject(int index){
-        Select escrowPrj = new Select(escrowProject);
-        escrowPrj.selectByIndex(index);
+    @FindBy(xpath="//select[@id='my_proj_sel']")
+    WebElement escrowForProject;
+    public void selectEscrowProject(String txt){
+        Select escrowPrj = new Select(escrowForProject);
+        escrowPrj.selectByVisibleText(txt);
     }
 
-    @FindBy(xpath =".//*[@id='win_providers']/select")
-    WebElement escrowQA;
-    public void selectEscrowQAEng(int index){
-        Select escrowQAEng = new Select(escrowQA);
-        escrowQAEng.selectByIndex(index);
+    @FindBy(xpath ="//select[@name='uids']")
+    WebElement escrowForQA;
+    public void selectEscrowQAEng(String qaEng){
+        Select escrowQAEng = new Select(escrowForQA);
+        escrowQAEng.selectByVisibleText(qaEng);
     }
 
-    @FindBy(name = "escrowme")
+    @FindBy(xpath="//input[@name='escrowme']")
     WebElement btnEscrowMe;
     public void clkEscrowMe(){
         btnEscrowMe.click();

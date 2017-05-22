@@ -21,7 +21,7 @@ public class LoginPage {
     @FindBy(id = "submits")
     WebElement signIn;
 
-    @FindBy(xpath="//a[@href='http://test.bidqa.com/wp-login.php?action=logout&_wpnonce=a0d6ce7834']")
+    @FindBy(xpath="//a[contains(@href,'http://test.bidqa.com/wp-login.php?action=logout')]")
     WebElement logout;
 
     public LoginPage(WebDriver driver){

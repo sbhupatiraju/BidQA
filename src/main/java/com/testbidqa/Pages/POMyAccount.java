@@ -25,17 +25,23 @@ public class POMyAccount {
     @FindBy(linkText = "Unpublished Projects ")
     WebElement unpublishedPrj;
 
-    @FindBy(linkText = "Awaiting Completion ")
+    @FindBy(xpath = "//a[@href='http://test.bidqa.com/my-account/awaiting-completion/']")
     WebElement awaitingCompletion;
 
-    @FindBy(linkText = "Outstanding Payments ")
+    @FindBy(xpath = "//a[@href='http://test.bidqa.com/my-account/outstanding-payments/']")
     WebElement outstandingPayments;
 
     @FindBy(xpath = ".//*[@id='my-account-admin-menu_seller']/li[7]/a")
     WebElement completedPayments;
 
-    @FindBy(linkText = "Team Manager")
+    @FindBy(xpath = "//a[contains(@href,'team-manager')]")
     WebElement teamManager;
+
+    @FindBy(xpath="//ul[@id='my-account-admin-menu']//a[@href='http://test.bidqa.com/my-account/finances/']")
+    WebElement finances;
+    public void clkFinances(){
+        finances.click();
+    }
 
     public POMyAccount(WebDriver driver) {
         this.driver = driver;
@@ -44,9 +50,6 @@ public class POMyAccount {
     }
 
     public void clickPostNewProject() throws InterruptedException {
-        System.out.println("Inside clickPostNewProject ");
-        //new WebDriverWait(driver, 30).until(ExpectedConditions.elementToBeClickable(postNewPrj));
-        //Thread.sleep(3000);
         postNewPrj.click();
     }
 
@@ -96,11 +99,11 @@ public class POMyAccount {
         clickReadMore.click();
     }
 
-    @FindBy(xpath="//a[contains(@href,\'http://test.bidqa.com/?p_action=choose_winner\')]") //(linkText = "Select as Winner")
+    @FindBy(xpath="//a[contains(@href,'http://test.bidqa.com/?p_action=choose_winner')]") //(linkText = "Select as Winner")
     WebElement selectAsWinner;
     public void clkSelectAsWinner(){
-        //JavascriptExecutor jse = (JavascriptExecutor)driver;
-        //jse.executeScript("window.scrollBy(0,350)", "");
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,350)", "");
         selectAsWinner.click();
     }
 
@@ -110,5 +113,10 @@ public class POMyAccount {
         chooseAWinner.click();
     }
 
+    @FindBy(xpath="//div//i[@class='bid-flag']") //return driver.findElement(By.xpath("//*[@id='my_bids']/div/div[6]"));
+    WebElement bidFlag;
+    public String getBigFlag(){
+        return bidFlag.getText();
+    }
 
 }

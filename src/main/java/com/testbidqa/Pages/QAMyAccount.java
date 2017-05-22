@@ -1,5 +1,6 @@
 package com.testbidqa.Pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,12 +37,13 @@ public class QAMyAccount {
         btnSubmitProposal.click();
     }
 
-    @FindBy(linkText = "Sam_Project9")
-    WebElement prjTitle;
-    public void clkPrjTitle() throws InterruptedException {
-        Thread.sleep(5000);
-        prjTitle.click();
+
+    @FindBy(xpath="//div[@class='bid_panel_box_title']")
+    WebElement submitYourProposalTitle;
+    public String getSubmitYourProposalTitle(){
+       return submitYourProposalTitle.getText();
     }
+
 
     @FindBy(id = "bid")
     WebElement bid;
@@ -77,9 +79,11 @@ public class QAMyAccount {
         btnPlaceBid.click();
     }
 
-    @FindBy(xpath = ".//*[@id='my-account-admin-menu_buyer']/li[2]/a")
+    @FindBy(xpath = "//a[@href='http://test.bidqa.com/my-account/outstanding-projects/']")
     WebElement projectsInProgress;
     public void clkProjectsInProgress(){
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,300)", "");
         projectsInProgress.click();
     }
 
@@ -105,6 +109,12 @@ public class QAMyAccount {
     WebElement logout;
     public void clkLogout(){
         logout.click();
+    }
+
+    @FindBy(xpath = "//div[@class='bid_panel_ok']//div[@class='padd10']")
+    WebElement bidPlaced;
+    public String getBidPlaced(){
+        return bidPlaced.getText();
     }
 
     public QAMyAccount(WebDriver driver) {
